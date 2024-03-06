@@ -37,14 +37,14 @@ public class Agent implements Steppable {
 	}
 }
 
-public bool checkQuarantine(environment_state) {
+public bool checkQuarantine(Environment state) {
 	if (Math.random() this.compliance) {
 		this.inQuarantine == true;
 	return true;
 	}
 }
 
-public bool checkRecover(environment_state) {
+public bool checkRecover(Environment state) {
 	int recoveryTime = state.recoveryTime + nextInt(2 * state.recoveryError) - state.recoveryError;
 	if (this.sickTime == recoveryTime) {
 			this.status == "RECOVERED";
