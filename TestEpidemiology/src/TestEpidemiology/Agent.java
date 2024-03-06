@@ -18,6 +18,7 @@ public class Agent implements Steppable {
     private Environment.Status status;
     private boolean inQuarantine;
     private int sickTime = 0;
+	private bool decidedQuarantine = false;
 	//private MersenneTwisterFast random;
 
     public Agent(int x, int y, int xdir, int ydir, double compliance, Environment.Status status, boolean inQuarantine) {
@@ -37,11 +38,14 @@ public class Agent implements Steppable {
 	}
 }
 
-public bool checkQuarantine(Environment state) {
-	if (Math.random() this.compliance) {
-		this.inQuarantine == true;
-	return true;
+public bool checkQuarantine(Environment state) { //
+	if (!this.decidedQuarantine){
+		this.decidedQuarantine = true;
+		if(state.random.double(1) < this.compliance){ { //e.g if we want 80% chance of quarantining we would set this.compliance to .80
+			this.inQuarantine == true;
+		}
 	}
+	return this.inQuarantine;
 }
 
 public bool checkRecover(Environment state) {
