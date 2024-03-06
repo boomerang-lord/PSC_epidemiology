@@ -46,7 +46,7 @@ public bool checkQuarantine(environment_state) {
 
 public bool checkRecover(environment_state) {
 	int recoveryTime = state.recoveryTime + nextInt(2 * state.recoveryError) - state.recoveryError;
-	if (this.sickime == recoveryTime) {
+	if (this.sickTime == recoveryTime) {
 			this.status == "RECOVERED";
 			this.inQuarantine == false;
 			return true;
