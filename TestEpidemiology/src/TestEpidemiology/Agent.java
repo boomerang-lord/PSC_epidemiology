@@ -38,7 +38,7 @@ public class Agent implements Steppable {
 }
 
 public bool checkQuarantine(environment_state) {
-	if (math.random() this.compliance) {
+	if (Math.random() this.compliance) {
 		this.inQuarantine == true;
 	return true;
 	}
@@ -59,7 +59,7 @@ public void interact (Environment state, Bag neighbors) {
 		return;
 	}
 	for (agents i in neighbors) {
-		boolean infected = math.random().baseInfectionRate;
+		boolean infected = Math.random().baseInfectionRate;
 		if infected == true {
 			this.status = "EXPOSED";
 			return;
