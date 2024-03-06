@@ -48,13 +48,13 @@ public bool checkRecover(environment_state) {
 	int recoveryTime = state.recoveryTime + nextInt(2 * state.recoveryError) - state.recoveryError;
 	if (this.sickime == recoveryTime) {
 			this.status == "RECOVERED";
-			this.inQuarantine == False;
+			this.inQuarantine == false;
 			return true;
 	return false;
 	}
 }
 
-public interact (Environment state, Bag neighbors) {
+public void interact (Environment state, Bag neighbors) {
 	if(neighbors.isEmpty()) {
 		return;
 	}
@@ -62,8 +62,7 @@ public interact (Environment state, Bag neighbors) {
 		boolean infected = random().baseInfectionRate;
 		if infected == true {
 			this.status = "EXPOSED";
-			break;
-			return step();
+			return;
 		}
 	}
 	return;
