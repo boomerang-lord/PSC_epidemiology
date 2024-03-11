@@ -34,7 +34,34 @@ public class Agent implements Steppable {
 	@Override
 	public void step(SimState state) {
 		// TODO Auto-generated method stub
-		
+		state.clock++;
+		Environment eState = (Environment)state;
+		if(this.status == "EXPOSED"){
+			this.status = "INFECTED";
+		}
+		if(this.status = "INFECTED"){ //if agent is infected
+			this.sickTime++;
+			if(state.clock >= state.burnInTime){
+				if(this.inQuarantine()){ //if the agent is infected and in quarantine
+					checkRecover(state); //check if they can recover
+					if(this.sickTime > state.quarantineTime){ //if more than designated quarantine time take them out of quarantine
+						this.inQuarantine = false;
+					}
+					return;
+				}
+				checkQuarantine(state); //check if an infected agent not in quarantine currently should quarantine
+				checkRecover(state); //check if an infected agent not in quarantine should recover 
+				if(this.inQuarantine()){ //if we decided the agent should recover, return
+					return;
+				}
+			}
+		}
+		move(state); //all agents not in quarantine move
+		if(this.status == "SUSCEPTIBLE"){ //if susceptible interact with all nearest agents
+			Bag neighbors = findSickNeighbors(state);
+			interact(state, neighbors);
+		}
+		return;
 	}
 }
 
